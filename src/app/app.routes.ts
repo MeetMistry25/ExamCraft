@@ -2,6 +2,13 @@ import { Routes } from '@angular/router';
 import { Login } from './Core/Auth/login/login';
 import { Register } from './Core/Auth/register/register';
 import { Home } from './Core/Shared/home/home';
+import { AboutUs } from './Core/Shared/aboutus/aboutus';
+import { PrivacyPolicy } from './Core/Shared/privacy-policy/privacy-policy';
+import { Terms } from './Core/Shared/terms/terms';
+
+// ... (keep layouts import)
+import { TeacherLayout } from './Core/Teacher/teacher-layout/teacher-layout';
+import { StudentLayout } from './Core/Student/student-layout/student-layout';
 import { TeacherDashboard } from './Core/Teacher/teacher-dashboard/teacher-dashboard';
 import { UploadMaterial } from './Core/Teacher/upload-material/upload-material';
 import { MaterialList } from './Core/Teacher/material-list/material-list';
@@ -15,7 +22,6 @@ import { AvailableTests } from './Core/Student/available-tests/available-tests';
 import { TakeTest } from './Core/Student/take-test/take-test';
 import { Question } from './Core/Student/question/question';
 import { TestNavigation } from './Core/Student/test-navigation/test-navigation';
-import { Subject } from 'rxjs';
 import { SubmitTest } from './Core/Student/submit-test/submit-test';
 import { TestResult } from './Core/Student/test-result/test-result';
 import { AnswerReview } from './Core/Student/answer-review/answer-review';
@@ -26,23 +32,47 @@ export const routes: Routes = [
     { path: '', component: Home },
     { path: 'login', component: Login },
     { path: 'register', component: Register },
-    { path: 'teacher-dashboard', component: TeacherDashboard },
-    { path: ' teacher/upload-material', component: UploadMaterial },
-    { path: ' teacher/material', component: MaterialList },
-    { path: ' teacher/question/generate', component: GenerateQuestionPaper },
-    { path: ' teacher/question/preview', component: QuestionPreview },
-    { path: ' teacher/publish-test', component: PublishTest },
-    { path: ' teacher/student-performance', component: StudentPerformance },
-    { path: ' teacher/topic-analysis', component: TopicAnalysis },
-    { path: ' student/dashboard', component: Dashboard },
-    { path: ' student/available-tests', component: AvailableTests },
-    { path: ' student/take-test', component: TakeTest },
-    { path: ' student/question', component: Question },
-    { path: ' student/test-navigation', component: TestNavigation },
-    { path: ' student/submit-test', component: SubmitTest },
-    { path: ' student/test-result', component: TestResult },
-    { path: ' student/answer-review', component: AnswerReview },
-    { path: ' student/performance-analysis', component: PerformanceAnalysis },
-    { path: '**', component: PageNotFound }
+    { path: 'about', component: AboutUs },
+    { path: 'privacy', component: PrivacyPolicy },
+    { path: 'terms', component: Terms },
+    { path: 'cookies', redirectTo: 'privacy' }, // Managing cookies often in privacy
 
-]
+    // Teacher Routes
+    {
+        path: 'teacher',
+        component: TeacherLayout,
+        children: [
+            { path: 'dashboard', component: TeacherDashboard },
+            { path: 'upload-material', component: UploadMaterial },
+            { path: 'material', component: MaterialList },
+            { path: 'question/generate', component: GenerateQuestionPaper },
+            { path: 'question/preview', component: QuestionPreview },
+            { path: 'publish-test', component: PublishTest },
+            { path: 'student-performance', component: StudentPerformance },
+            { path: 'topic-analysis', component: TopicAnalysis },
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+        ]
+    },
+
+    // Student Routes
+    {
+        path: 'student',
+        component: StudentLayout,
+        children: [
+            { path: 'dashboard', component: Dashboard },
+            { path: 'available-tests', component: AvailableTests },
+            { path: 'take-test', component: TakeTest },
+            { path: 'question', component: Question },
+            { path: 'test-navigation', component: TestNavigation },
+            { path: 'submit-test', component: SubmitTest },
+            { path: 'test-result', component: TestResult },
+            { path: 'answer-review', component: AnswerReview },
+            { path: 'performance-analysis', component: PerformanceAnalysis },
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+        ]
+    },
+
+    // Redirect legacy routes or handle 404
+    { path: 'teacher-dashboard', redirectTo: 'teacher/dashboard' },
+    { path: '**', component: PageNotFound }
+];

@@ -1,0 +1,26 @@
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">
+            <span class="logo-text">ExamCraft</span>
+            <span class="role-badge" [class]="role">{{role | titlecase}}</span>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <ul>
+            <li *ngFor="let item of menuItems[role]">
+                <a [routerLink]="item.link" routerLinkActive="active" class="nav-item">
+                    <i class="material-icons-outlined icon">{{item.icon}}</i>
+                    <span class="label">{{item.label}}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+        <a routerLink="/login" class="nav-item logout">
+            <i class="material-icons-outlined icon">logout</i>
+            <span class="label">Logout</span>
+        </a>
+    </div>
+</aside>

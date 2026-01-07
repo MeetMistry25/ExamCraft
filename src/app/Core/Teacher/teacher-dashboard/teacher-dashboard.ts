@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './teacher-dashboard.css',
 })
 export class TeacherDashboard {
-
+  stats = [
+    { label: 'Uploaded Materials', value: 12, icon: 'folder_open', color: 'primary' },
+    { label: 'Generated Tests', value: 5, icon: 'edit_document', color: 'secondary' },
+    { label: 'Student Attempts', value: 45, icon: 'people', color: 'success' }
+  ];
 }

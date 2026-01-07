@@ -1,0 +1,195 @@
+/* Split Layout Reused from Login + Specifics */
+.split-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.visual-side {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(18, 18, 18, 0.9), rgba(139, 92, 246, 0.3));
+    /* Violet tinted for Register */
+    z-index: 2;
+}
+
+.visual-content {
+    position: relative;
+    z-index: 3;
+    color: white;
+    text-align: center;
+}
+
+.visual-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.05em;
+    background: linear-gradient(to right, #fff, #9CA3AF);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-dark);
+    padding: 2rem;
+    max-width: 600px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* Form Styles */
+.auth-header {
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.auth-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+/* Role Selector */
+.role-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.role-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-muted);
+}
+
+.role-option:hover {
+    background-color: var(--bg-hover);
+}
+
+.role-option.active {
+    border-color: var(--primary);
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--primary);
+}
+
+.role-option .material-icons-outlined {
+    font-size: 1.5rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+}
+
+.dark-input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 3rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.dark-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.875rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.auth-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .visual-side {
+        display: none;
+    }
+}

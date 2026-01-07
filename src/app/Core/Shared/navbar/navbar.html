@@ -1,1 +1,41 @@
-<p>navbar works!</p>
+<nav class="navbar">
+    <div class="container navbar-content">
+        <!-- Logo -->
+        <a routerLink="/" class="logo">
+            <span class="logo-icon">
+                <span class="material-icons-outlined">school</span>
+            </span>
+            <span class="logo-text">ExamCraft</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="nav-links desktop-only">
+            <!-- <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a> -->
+           
+        </div>
+
+        <!-- Auth Buttons Desktop -->
+        <div class="auth-buttons desktop-only">
+            <a routerLink="/login" class="btn btn-ghost">Log In</a>
+            <a routerLink="/register" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn mobile-only" (click)="toggleMobileMenu()" aria-label="Toggle Menu">
+            <span class="material-icons-outlined">{{ isMobileMenuOpen ? 'close' : 'menu' }}</span>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" [class.open]="isMobileMenuOpen">
+        <div class="mobile-nav-links">
+            <a routerLink="/" (click)="closeMobileMenu()" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">Home</a>
+            
+        </div>
+        <div class="mobile-auth-buttons">
+            <a routerLink="/login" (click)="closeMobileMenu()" class="btn btn-ghost">Log In</a>
+            <a routerLink="/register" (click)="closeMobileMenu()" class="btn btn-primary">Get Started</a>
+        </div>
+    </div>
+</nav>

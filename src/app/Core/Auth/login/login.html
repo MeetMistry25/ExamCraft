@@ -1,1 +1,59 @@
-<p>login works!</p>
+<div class="split-layout">
+    <!-- Left Side: Visual -->
+    <div class="visual-side">
+        <div class="visual-content">
+            <h1>ExamCraft</h1>
+            <p>AI-Powered Assessment Platform</p>
+        </div>
+        <div class="overlay"></div>
+        <img src="login-bg.png" alt="Secure Login" class="bg-image">
+    </div>
+
+    <!-- Right Side: Form -->
+    <div class="form-side">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your account</p>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <span class="material-icons-outlined input-icon">email</span>
+                        <input type="email" id="email" formControlName="email" placeholder="name@university.edu"
+                            class="dark-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <span class="material-icons-outlined input-icon">lock</span>
+                        <input type="password" id="password" formControlName="password" placeholder="••••••••"
+                            class="dark-input">
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full mt-4">
+                    <span>Sign In</span>
+                    <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>New to ExamCraft? <a routerLink="/register">Create an account</a></p>
+            </div>
+        </div>
+    </div>
+</div>

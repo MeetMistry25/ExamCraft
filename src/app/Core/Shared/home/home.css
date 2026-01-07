@@ -1,0 +1,281 @@
+/* Landing Container */
+.landing-container {
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--bg-dark);
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 10%;
+    min-height: 85vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    z-index: 10;
+    max-width: 600px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.hero-section h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 50%, var(--secondary) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.primary-cta {
+    padding: 0.75rem 2rem;
+    font-size: 1.125rem;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border: none;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.primary-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.secondary-cta {
+    padding: 0.75rem 2rem;
+    font-size: 1.125rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.secondary-cta:hover {
+    border-color: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Abstract Visuals */
+/* Hero Image */
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    filter: drop-shadow(0 20px 50px rgba(59, 130, 246, 0.2));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Features Section */
+.features-section {
+    padding: 5rem 10%;
+    background: linear-gradient(to bottom, var(--bg-dark), #000);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+}
+
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.role-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.teacher-icon {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary);
+}
+
+.student-icon {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--secondary);
+}
+
+.role-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.feature-list li .material-icons-outlined {
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.card-glow {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 200px;
+    height: 200px;
+    filter: blur(80px);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.teacher-card .card-glow {
+    background: var(--primary);
+}
+
+.student-card .card-glow {
+    background: var(--secondary);
+}
+
+.role-card:hover .card-glow {
+    opacity: 0.15;
+}
+
+.landing-footer {
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    font-size: 0.875rem;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        padding-top: 6rem;
+        text-align: center;
+    }
+
+    .hero-content {
+        margin-bottom: 3rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .cta-group {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-visual {
+        width: 100%;
+        position: relative;
+        height: 300px;
+    }
+}

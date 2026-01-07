@@ -1,0 +1,176 @@
+.about-container {
+    padding-bottom: 4rem;
+}
+
+/* Hero */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 4rem 1rem 0;
+    background: linear-gradient(to bottom, var(--bg-dark), #000);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+}
+
+.hero-image-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(59, 130, 246, 0.15);
+}
+
+.glow-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 80%, var(--bg-dark) 100%);
+    z-index: 1;
+}
+
+/* Mission */
+.mission-section {
+    padding: 5rem 0;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.text-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+.text-content p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.text-content strong {
+    color: var(--primary);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.stat-card:first-child {
+    grid-column: span 2;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Values */
+.values-section {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.values-section h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.value-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary);
+}
+
+.value-card .material-icons-outlined {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+}
+
+.value-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-main);
+}
+
+.value-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
