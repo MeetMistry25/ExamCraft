@@ -1,31 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Sidebar } from '../../Shared/sidebar/sidebar';
+import { CommonModule } from '@angular/common';
+import { LayoutService } from '../../Services/layout.service';
 
 @Component({
-    selector: 'app-student-layout',
-    standalone: true,
-    imports: [RouterOutlet, Sidebar],
-    template: `
-    <div class="layout-wrapper">
-      <app-sidebar role="student"></app-sidebar>
-      <main class="main-content">
-        <router-outlet></router-outlet>
-      </main>
+  selector: 'app-student-layout',
+  standalone: true,
+  imports: [RouterOutlet, CommonModule],
+  template: `
+    <div class="student-content">
+      <router-outlet></router-outlet>
     </div>
   `,
-    styles: [`
-    .layout-wrapper {
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .main-content {
-      flex: 1;
-      padding: 2rem;
-      background-color: var(--bg-dark);
-      overflow-y: auto;
-      height: 100%;
+  styles: [`
+    .student-content {
+      width: 100%;
+      min-height: 100%;
     }
   `]
 })

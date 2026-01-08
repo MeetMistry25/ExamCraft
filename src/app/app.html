@@ -1,7 +1,21 @@
 <div class="app-layout">
     <app-navbar></app-navbar>
-    <div class="content-wrapper">
-        <router-outlet></router-outlet>
+
+    <!-- Main Container: Flex row if logged in to hold Sidebar + Content -->
+    <div class="main-container" [class.authenticated-layout]="currentUser">
+
+        <!-- Sidebar: Only if logged in and toggled open -->
+        <app-sidebar *ngIf="currentUser && (layoutService.sidebarOpen$ | async)" [role]="currentUser.role"
+            class="global-sidebar">
+        </app-sidebar>
+
+        <div class="content-wrapper">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <app-footer></app-footer>
+
+    <!-- Footer: If logged in, maybe we don't want footer or want it at bottom. 
+         Usually dashboards don't have this big footer. 
+         But request didn't specify removing it. -->
+    <app-footer *ngIf="!currentUser"></app-footer>
 </div>

@@ -1,23 +1,36 @@
 <nav class="navbar">
-    <div class="container navbar-content">
-        <!-- Logo -->
-        <a routerLink="/" class="logo">
-            <span class="logo-icon">
-                <span class="material-icons-outlined">school</span>
-            </span>
-            <span class="logo-text">ExamCraft</span>
-        </a>
+    <div class="navbar-content">
+        <div class="navbar-left" style="display: flex; align-items: center; gap: 1rem;">
+            <!-- Sidebar Toggle (LoggedIn Only) -->
+            <button *ngIf="currentUser" (click)="toggleSidebar()" class="btn btn-icon sidebar-toggle"
+                style="background: none; border: none; color: inherit; cursor: pointer; display: flex; align-items: center;">
+                <span class="material-icons-outlined">menu</span>
+            </button>
+
+            <!-- Logo -->
+            <a [routerLink]="dashboardLink" class="logo">
+                <span class="logo-icon">
+                    <span class="material-icons-outlined">school</span>
+                </span>
+                <span class="logo-text">ExamCraft</span>
+            </a>
+        </div>
 
         <!-- Desktop Navigation -->
         <div class="nav-links desktop-only">
             <!-- <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a> -->
-           
+
         </div>
 
         <!-- Auth Buttons Desktop -->
-        <div class="auth-buttons desktop-only">
+        <div class="auth-buttons desktop-only" *ngIf="!currentUser">
             <a routerLink="/login" class="btn btn-ghost">Log In</a>
             <a routerLink="/register" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="auth-buttons desktop-only" *ngIf="currentUser">
+            <!-- Optional: Show logout or user menu here if desired, otherwise empty to keep layout -->
+            <!-- <button (click)="logout()" class="btn btn-ghost">Logout</button> -->
         </div>
 
         <!-- Mobile Menu Button -->
@@ -29,13 +42,16 @@
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" [class.open]="isMobileMenuOpen">
         <div class="mobile-nav-links">
-            <a routerLink="/" (click)="closeMobileMenu()" routerLinkActive="active"
+            <a [routerLink]="dashboardLink" (click)="closeMobileMenu()" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">Home</a>
-            
+
         </div>
-        <div class="mobile-auth-buttons">
+        <div class="mobile-auth-buttons" *ngIf="!currentUser">
             <a routerLink="/login" (click)="closeMobileMenu()" class="btn btn-ghost">Log In</a>
             <a routerLink="/register" (click)="closeMobileMenu()" class="btn btn-primary">Get Started</a>
+        </div>
+        <div class="mobile-auth-buttons" *ngIf="currentUser">
+            <button (click)="logout(); closeMobileMenu()" class="btn btn-ghost">Logout</button>
         </div>
     </div>
 </nav>

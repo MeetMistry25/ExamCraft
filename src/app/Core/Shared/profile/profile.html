@@ -1,0 +1,184 @@
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>My Profile</h1>
+        <p>Manage your account settings and preferences.</p>
+    </div>
+
+    <!-- Feedback Message -->
+    <div *ngIf="message" class="alert" [ngClass]="messageType">
+        {{ message }}
+    </div>
+
+    <div class="profile-grid">
+        <!-- Main Profile Info -->
+        <div class="card profile-card" style="width: 100%;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0; border: none; padding: 0;">Personal Information</h2>
+                <button *ngIf="!isEditing" (click)="startEditing()" class="btn btn-secondary btn-sm"
+                    style="padding: 0.25rem 0.75rem; font-size: 0.9rem;">
+                    <span class="material-icons-outlined"
+                        style="font-size: 1.1rem; vertical-align: middle; margin-right: 0.25rem;">edit</span>
+                    Edit
+                </button>
+            </div>
+
+            <!-- Read Only View -->
+            <div *ngIf="!isEditing" class="profile-details-view">
+                <div class="detail-row">
+                    <span class="label">Full Name</span>
+                    <span class="value">{{ currentUser?.fullName || '-' }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Email Address</span>
+                    <span class="value">{{ currentUser?.email }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Role</span>
+                    <span class="value" style="text-transform: capitalize;">{{ currentUser?.role }}</span>
+                </div>
+
+                <!-- Teacher Details -->
+                <ng-container *ngIf="currentUser?.role === 'teacher'">
+                    <div class="detail-row">
+                        <span class="label">Designation</span>
+                        <span class="value">{{ currentUser?.designation || '-' }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Experience</span>
+                        <span class="value">{{ currentUser?.experience ? currentUser.experience + ' Years' : '-'
+                            }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Education</span>
+                        <span class="value">{{ currentUser?.education || '-' }}</span>
+                    </div>
+                </ng-container>
+
+                <!-- Student Details -->
+                <ng-container *ngIf="currentUser?.role === 'student'">
+                    <div class="detail-row">
+                        <span class="label">Enrollment No.</span>
+                        <span class="value">{{ currentUser?.enrollmentNo || '-' }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Branch</span>
+                        <span class="value">{{ currentUser?.branch || '-' }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Semester</span>
+                        <span class="value">{{ currentUser?.semester || '-' }}</span>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- Edit Form -->
+            <form *ngIf="isEditing" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+                <div class="profile-form-content">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" formControlName="fullName" class="dark-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address (Cannot be changed)</label>
+                        <input type="email" formControlName="email" class="dark-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Role</label>
+                        <input type="text" formControlName="role" class="dark-input"
+                            style="text-transform: capitalize;">
+                    </div>
+
+                    <!-- Teacher Specific Fields -->
+                    <ng-container *ngIf="currentUser?.role === 'teacher'">
+                        <div class="form-group">
+                            <label>Designation</label>
+                            <input type="text" formControlName="designation" placeholder="e.g. Assistant Professor"
+                                class="dark-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Experience (Years)</label>
+                            <input type="text" formControlName="experience" placeholder="e.g. 5 Years"
+                                class="dark-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Education/Qualification</label>
+                            <input type="text" formControlName="education" placeholder="e.g. PhD in Computer Science"
+                                class="dark-input">
+                        </div>
+                    </ng-container>
+
+                    <!-- Student Specific Fields -->
+                    <ng-container *ngIf="currentUser?.role === 'student'">
+                        <div class="form-group">
+                            <label>Enrollment / ID Number</label>
+                            <input type="text" formControlName="enrollmentNo" class="dark-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Branch / Department</label>
+                            <input type="text" formControlName="branch" placeholder="e.g. Computer Science"
+                                class="dark-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Semester</label>
+                            <input type="number" formControlName="semester" min="1" max="8" class="dark-input">
+                        </div>
+                    </ng-container>
+                </div>
+
+                <div class="form-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary"
+                        [disabled]="profileForm.invalid || profileForm.pristine">
+                        Save Changes
+                    </button>
+                    <button type="button" class="btn btn-secondary" (click)="cancelEditing()">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Security / Password (Collapsible) -->
+    <div class="card security-card" style="margin-top: 2rem;">
+        <div class="card-header-toggle" (click)="togglePasswordSection()"
+            style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span class="material-icons-outlined">lock</span>
+                <h2 style="margin: 0; border: none; padding: 0;">Change Password</h2>
+            </div>
+            <span class="material-icons-outlined transform-transition"
+                [style.transform]="isPasswordSectionOpen ? 'rotate(180deg)' : 'rotate(0deg)'">expand_more</span>
+        </div>
+
+        <div class="collapsible-content" *ngIf="isPasswordSectionOpen"
+            style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+            <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" formControlName="currentPassword" class="dark-input">
+                </div>
+
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" formControlName="newPassword" class="dark-input">
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" formControlName="confirmPassword" class="dark-input">
+                    <div *ngIf="passwordForm.errors?.['mismatch'] && passwordForm.get('confirmPassword')?.touched"
+                        class="error-text">
+                        Passwords do not match
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-secondary" [disabled]="passwordForm.invalid">
+                    Update Password
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

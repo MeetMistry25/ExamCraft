@@ -1,0 +1,29 @@
+<div class="settings-container">
+    <div class="settings-header">
+        <h1>Settings</h1>
+        <p>Customize your application preferences.</p>
+    </div>
+
+    <div class="card settings-card">
+        <h2>Appearance</h2>
+        <div class="setting-item">
+            <div class="setting-info">
+                <span class="label">Theme</span>
+                <span class="desc">Choose your preferred interface theme.</span>
+            </div>
+
+            <div class="theme-toggles">
+                <button [class.active]="themeService.theme() === 'dark'" (click)="setTheme('dark')"
+                    class="theme-btn dark-btn">
+                    <span class="material-icons-outlined">dark_mode</span>
+                    Dark
+                </button>
+                <button [class.active]="themeService.theme() === 'light'" (click)="setTheme('light')"
+                    class="theme-btn light-btn">
+                    <span class="material-icons-outlined">light_mode</span>
+                    Light
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

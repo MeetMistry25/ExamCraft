@@ -5,8 +5,9 @@ import { Home } from './Core/Shared/home/home';
 import { AboutUs } from './Core/Shared/aboutus/aboutus';
 import { PrivacyPolicy } from './Core/Shared/privacy-policy/privacy-policy';
 import { Terms } from './Core/Shared/terms/terms';
+import { Profile } from './Core/Shared/profile/profile';
+import { Settings } from './Core/Shared/settings/settings';
 
-// ... (keep layouts import)
 import { TeacherLayout } from './Core/Teacher/teacher-layout/teacher-layout';
 import { StudentLayout } from './Core/Student/student-layout/student-layout';
 import { TeacherDashboard } from './Core/Teacher/teacher-dashboard/teacher-dashboard';
@@ -35,7 +36,7 @@ export const routes: Routes = [
     { path: 'about', component: AboutUs },
     { path: 'privacy', component: PrivacyPolicy },
     { path: 'terms', component: Terms },
-    { path: 'cookies', redirectTo: 'privacy' }, // Managing cookies often in privacy
+    { path: 'cookies', redirectTo: 'privacy' },
 
     // Teacher Routes
     {
@@ -50,6 +51,8 @@ export const routes: Routes = [
             { path: 'publish-test', component: PublishTest },
             { path: 'student-performance', component: StudentPerformance },
             { path: 'topic-analysis', component: TopicAnalysis },
+            { path: 'profile', component: Profile },
+            { path: 'settings', component: Settings },
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]
     },
@@ -68,6 +71,8 @@ export const routes: Routes = [
             { path: 'test-result', component: TestResult },
             { path: 'answer-review', component: AnswerReview },
             { path: 'performance-analysis', component: PerformanceAnalysis },
+            { path: 'profile', component: Profile },
+            { path: 'settings', component: Settings },
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]
     },

@@ -6,7 +6,7 @@
 .hero {
     position: relative;
     text-align: center;
-    padding: 4rem 1rem 0;
+    padding: 4rem 2rem 0;
     background: linear-gradient(to bottom, var(--bg-dark), #000);
 }
 
@@ -31,7 +31,7 @@
 
 .hero-image-wrapper {
     position: relative;
-    max-width:1000px;
+    max-width: 1000px;
     margin: 0 auto;
     border-radius: var(--radius-lg);
     overflow: hidden;

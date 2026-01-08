@@ -4,10 +4,37 @@
     min-height: 100vh;
 }
 
+.main-container {
+    display: flex;
+    /* Default flex column for normal pages? No, usually block. */
+    flex: 1;
+    flex-direction: column;
+    padding-top: 70px;
+    /* Navbar offset */
+}
+
+.main-container.authenticated-layout {
+    flex-direction: row;
+    /* Sidebar next to content */
+    overflow: hidden;
+    /* Prevent body scroll used for internal scroll */
+    height: 100vh;
+    padding-top: 70px;
+}
+
 .content-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding-top: 70px;
-    /* Offset for fixed navbar */
+    overflow-y: auto;
+    /* Scrollable content */
+}
+
+.main-container.authenticated-layout .content-wrapper {
+    padding: 2rem;
+}
+
+/* When not authenticated (normal pages), content-wrapper might not need overflow-y auto if we want global scroll */
+.main-container:not(.authenticated-layout) .content-wrapper {
+    overflow-y: visible;
 }
