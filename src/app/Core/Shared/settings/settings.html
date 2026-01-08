@@ -4,24 +4,137 @@
         <p>Customize your application preferences.</p>
     </div>
 
-    <div class="card settings-card">
-        <h2>Appearance</h2>
-        <div class="setting-item">
-            <div class="setting-info">
-                <span class="label">Theme</span>
-                <span class="desc">Choose your preferred interface theme.</span>
+    <div class="settings-grid">
+        <!-- Appearance -->
+        <div class="card settings-card">
+            <h2>Appearance & Accessibility</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">Theme</span>
+                    <span class="desc">Choose your preferred interface theme.</span>
+                </div>
+                <div class="theme-toggles">
+                    <button [class.active]="themeService.theme() === 'dark'" (click)="setTheme('dark')"
+                        class="theme-btn dark-btn">
+                        <span class="material-icons-outlined">dark_mode</span>
+                        Dark
+                    </button>
+                    <button [class.active]="themeService.theme() === 'light'" (click)="setTheme('light')"
+                        class="theme-btn light-btn">
+                        <span class="material-icons-outlined">light_mode</span>
+                        Light
+                    </button>
+                </div>
             </div>
 
-            <div class="theme-toggles">
-                <button [class.active]="themeService.theme() === 'dark'" (click)="setTheme('dark')"
-                    class="theme-btn dark-btn">
-                    <span class="material-icons-outlined">dark_mode</span>
-                    Dark
-                </button>
-                <button [class.active]="themeService.theme() === 'light'" (click)="setTheme('light')"
-                    class="theme-btn light-btn">
-                    <span class="material-icons-outlined">light_mode</span>
-                    Light
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">Font Size</span>
+                    <span class="desc">Adjust the base font size ({{fontSize}}px).</span>
+                </div>
+                <div class="control-wrapper">
+                    <input type="range" min="12" max="24" step="1" [(ngModel)]="fontSize"
+                        (ngModelChange)="updateFontSize($event)" class="range-slider">
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">Reduce Motion</span>
+                    <span class="desc">Minimize animations for better performance.</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="reduceMotion" (change)="toggleMotion()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="card settings-card">
+            <h2>Notifications</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">Email Notifications</span>
+                    <span class="desc">Receive emails about updates and alerts.</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="emailNotifications">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">In-App Alerts</span>
+                    <span class="desc">Get notified about performance insights.</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="performanceAlerts">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Student Specific -->
+        <div class="card settings-card" *ngIf="currentUser?.role === 'student'">
+            <h2>Exam Preferences</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">Show Timer</span>
+                    <span class="desc">Display countdown timer during tests.</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="showTimer">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">Auto-Submit Warning</span>
+                    <span class="desc">Alert 5 minutes before time ends.</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="autoSubmitWarning">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Teacher Specific -->
+        <div class="card settings-card" *ngIf="currentUser?.role === 'teacher'">
+            <h2>Teaching Preferences</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">Default Difficulty</span>
+                    <span class="desc">Pre-select difficulty for new questions.</span>
+                </div>
+                <select [(ngModel)]="defaultDifficulty" class="dark-select">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label">Default Marks</span>
+                    <span class="desc">Default positive marks for questions.</span>
+                </div>
+                <input type="number" [(ngModel)]="defaultPositiveMarks" class="dark-input small-input">
+            </div>
+        </div>
+
+        <!-- Data Management -->
+        <div class="card settings-card danger-zone">
+            <h2>Data Management</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <span class="label text-danger">Clear App Data</span>
+                    <span class="desc">Remove all local data and reset app.</span>
+                </div>
+                <button (click)="clearLocalData()" class="btn btn-danger-outline">
+                    Clear Data
                 </button>
             </div>
         </div>
